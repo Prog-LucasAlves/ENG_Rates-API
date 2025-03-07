@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto p-8">
+        <h1 class="text=3x1 font-bold mb-6 text-center">Exchange Rates</h1>
+        <table class="min-w-full bg-white shadow-md rounded-ld">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4">Moeda</th>
+                </tr>
+            </thead>
+            <tbody id="exchangeRatesBody">
+                <!-- Dados serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        async function fetchExchangeRates() {
+            const response = await fetch('/exchange_rates');
+            const data = await response.json();
+            const tbody = document.getElementById('exchangeRatesBody');
+            tbody.innerHTML = '';
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-2 px-4 text-center">${row[1]}</td>
+                    <td class="py-2 px-4 text-center">${row[2]}</td>
+                    <td class="py-2 px-4">${row[3]}</td>
+                    <td class="py-2 px-4" text=green-600>${row[4]}</td>
+                    <td class="py-2 px-4" text=red-600>${row[5]}</td>
+                    <td class="py-2 px-4">${row[6]}</td>
+                    <td class="py-2 px-4">${row[7]}</td>
+                    <td class="py-2 px-4">${row[8]}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        fetchExchangeRates();
+    </script>
+</body>
+</html>
