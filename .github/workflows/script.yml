@@ -2,7 +2,7 @@ name: Atualizar pares de moedas
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # Executa a cada hora
+    - cron: "0 */4 * * *"  # Executa a cada hora
   workflow_dispatch:  # Permite execução manual
 
 jobs:

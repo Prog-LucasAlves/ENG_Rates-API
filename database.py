@@ -95,7 +95,7 @@ def query_data():
     cursor.execute(
         """
                    SELECT * FROM exchange_rates ORDER BY timestamp
-                   DESC LIMIT 10
+                   DESC LIMIT 20
                    """
     )
     rows = cursor.fetchall()
