@@ -3,47 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exchange Rates</title>
+    <title>Cotações de Moedas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 <body class="bg-gray-100 text-gray-900">
     <div class="container mx-auto p-8">
-        <h1 class="text=3x1 font-bold mb-6 text-center">Exchange Rates</h1>
-        <table class="min-w-full bg-white shadow-md rounded-ld">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="py-2 px-4">Moeda</th>
+        <h1 class="text-3xl font-bold mb-6 text-center">Cotações de Moedas em Tempo Real</h1>
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="py-2 px-4 text-left">Moeda</th>
+                    <th class="py-2 px-4 text-left">Código</th>
+                    <th class="py-2 px-4 text-left">Código-In</th>
+                    <th class="py-2 px-4 text-left">Nome</th>
+                    <th class="py-2 px-4 text-left">Alta</th>
+                    <th class="py-2 px-4 text-left">Baixa</th>
+                    <th class="py-2 px-4 text-left">Compra</th>
+                    <th class="py-2 px-4 text-left">Venda</th>
+                    <th class="py-2 px-4 text-left">Última Atualização</th>
                 </tr>
             </thead>
-            <tbody id="exchangeRatesBody">
+            <tbody id="exchangeRatesBody" class="divide-y divide-gray-300">
                 <!-- Dados serão inseridos aqui -->
             </tbody>
         </table>
     </div>
+
     <script>
         async function fetchExchangeRates() {
-            const response = await fetch('/exchange_rates');
-            const data = await response.json();
-            const tbody = document.getElementById('exchangeRatesBody');
-            tbody.innerHTML = '';
+            try {
+                const response = await fetch("/exchange_rates");
+                const data = await response.json();
+                const tbody = document.getElementById('exchangeRatesBody');
+                tbody.innerHTML = '';
 
-            data.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="py-2 px-4 text-center">${row[1]}</td>
-                    <td class="py-2 px-4 text-center">${row[2]}</td>
-                    <td class="py-2 px-4">${row[3]}</td>
-                    <td class="py-2 px-4" text=green-600>${row[4]}</td>
-                    <td class="py-2 px-4" text=red-600>${row[5]}</td>
-                    <td class="py-2 px-4">${row[6]}</td>
-                    <td class="py-2 px-4">${row[7]}</td>
-                    <td class="py-2 px-4">${row[8]}</td>
-                `;
-                tbody.appendChild(tr);
-            });
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class='py-2 px-4'>${row[1]}</td>
+                        <td class='py-2 px-4'>${row[2]}</td>
+                        <td class='py-2 px-4'>${row[3]}</td>
+                        <td class='py-2 px-4 text-green-600'>${row[4]}</td>
+                        <td class='py-2 px-4 text-red-600'>${row[5]}</td>
+                        <td class='py-2 px-4'>${row[6]}</td>
+                        <td class='py-2 px-4'>${row[7]}</td>
+                        <td class='py-2 px-4'>${row[8]}</td>
+                        <td class='py-2 px-4'>${row[9]}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar os dados:', error);
+            }
         }
 
         fetchExchangeRates();
+        setInterval(fetchExchangeRates, 30000); // Atualiza a cada 30 segundos
     </script>
 </body>
 </html>
