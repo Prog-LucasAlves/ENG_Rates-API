@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "eng-rates-api"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Alves <lucasalves_taz@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.1.0"
+pydantic = "^2.10.6"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
