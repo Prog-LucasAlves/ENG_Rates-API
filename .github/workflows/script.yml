@@ -1,1 +1,36 @@
-# PPP
+name: Atualizar Taxas de Câmbio
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Executa a cada hora
+  workflow_dispatch:  # Permite execução manual
+
+jobs:
+  update_exchange_rates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Atualizar taxas de câmbio no SQLite
+        run: |
+          python update_db.py  # Arquivo Python que atualiza o banco de dados SQLite
+
+      - name: Commit e push das alterações no banco de dados
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add database.sqlite3
+          git commit -m 'Atualização automática das taxas de câmbio no SQLite' || echo "Sem alterações para commit"
+          git push
