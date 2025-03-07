@@ -7,7 +7,7 @@ from flask_apscheduler import APScheduler
 from flask_cors import CORS
 from pydantic import BaseModel
 
-from db import query_data
+from database import query_data
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 CORS(app)
