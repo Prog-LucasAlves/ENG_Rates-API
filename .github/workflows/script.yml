@@ -2,7 +2,7 @@ name: Atualizar Pares de Moedas
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -22,3 +22,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: Atualizar pares de moedas
+      run: |
+        python app.py
+
+    - name: Commit e push
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'actions@github.com'
+        git add database.sqlite3
+        git commit -m 'up exchange_rates.db' || echo "up sem alterações para commit"
+        git push
