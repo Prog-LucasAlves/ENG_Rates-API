@@ -49,8 +49,10 @@ python app.py
 
 A API estará disponível em `**http://127.0.0.1:5000**`
 
+##
+
 ## 📡 Endpoints da API
 
 | **Método** | **Endpoint** | **Descrição** |
 | ------ | -------- | --------- |
-| `**GET**` | / | Retorna os dados armazenadas no banco de dados |
+| **GET** | / | Retorna os dados armazenadas no banco de dados |
