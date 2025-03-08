@@ -76,4 +76,4 @@ A API estará disponível em `**http://127.0.0.1:5000**`
 
 - **Backend (Render)**: [URL do backend](https://eng-rates-api.onrender.com/)
 
-## 📌 Sinta-se à vontade para contribuir! Caso queira sugerir melhorias, abra um Pull Request. 🚀
+### 📌 Sinta-se à vontade para contribuir! Caso queira sugerir melhorias, abra um Pull Request. 🚀
