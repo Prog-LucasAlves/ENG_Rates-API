@@ -49,10 +49,31 @@ python app.py
 
 A API estará disponível em `**http://127.0.0.1:5000**`
 
-##
-
 ## 📡 Endpoints da API
 
 | **Método** | **Endpoint** | **Descrição** |
 | ------ | -------- | --------- |
 | **GET** | / | Retorna os dados armazenadas no banco de dados |
+
+## 🌍 Deploy no Render
+
+- 1️⃣ Criar conta no Render
+- 2️⃣ Criar um serviço Web
+- 3️⃣ Conectar ao repositório GitHub
+- 4️⃣ Configurar:
+  - **Start Command**: `gunicorn app:app`
+  - **Build Command**: `pip install -r requirements.txt`
+
+## 📊 Funcionalidades
+
+- ✅ Coleta automática das taxas de câmbio
+- ✅ Armazena os dados no banco SQLite
+- ✅ Exibe os valores dinamicamente na interface
+- ✅ API acessível para consultas externas
+- ✅ Deploy no Render
+
+## 🔗 Links Úteis
+
+- **Backend (Render)**: [URL do backend](https://eng-rates-api.onrender.com/)
+
+## 📌 Sinta-se à vontade para contribuir! Caso queira sugerir melhorias, abra um Pull Request. 🚀
